@@ -13,7 +13,7 @@
 // Game configuration
 #define MAX_LEVEL 10
 #define INITIAL_LEVEL 1
-#define MAX_LIVES 1
+#define MAX_LIVES 4
 #define DISPLAY_WIDTH 4
 #define SPACESHIP_POSITION_COUNT 8
 #define BLOCK_SPAWN_PROBABILITY 30  // Percentage chance per level
@@ -182,6 +182,9 @@ void initGame(void) {
     if (g_game_state != NULL) {
         free(g_game_state);
     }
+
+    // Dynamic memory allocation for game state
+    // uses sizeof(GameState) to know how much memory bytes to allocate
     g_game_state = (GameState*)malloc(sizeof(GameState));
     
     if (g_game_state == NULL) {
@@ -416,8 +419,8 @@ void renderDisplay(void) {
         // During collision, flash rapidly
         show_spaceship = (g_collision_flash % 10 < 5);
     } else {
-        // Normal flicker - spaceship blinks every ~150ms for visibility (changed from 300ms)
-        show_spaceship = ((g_timer_counter / 25) % 2) == 0;  // Changed from 50 to 25 for faster blinking
+        // Normal flicker - spaceship blinks every ~150ms for visibility
+        show_spaceship = ((g_timer_counter / 25) % 2) == 0; 
     }
     
     if (show_spaceship) {

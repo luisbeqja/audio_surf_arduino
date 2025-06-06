@@ -54,7 +54,7 @@ else
     echo "• No PlatformIO monitor processes running"
 fi
 
-# Optional: Reset the Arduino - uncomment if you want this
+# Optional: Reset the Arduino
 # echo "Step 4: Resetting Arduino..."
 # PORT="/dev/cu.usbmodem*"
 # ACTUAL_PORT=$(ls $PORT 2>/dev/null | head -n 1)
